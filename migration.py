@@ -4,14 +4,13 @@ import string
 from datetime import datetime
 
 from FlaskMVC.service import app, db
-from FlaskMVC.models.db.User import User
+from FlaskMVC.models.db.StreamKey import StreamKey
 
 
 def create_data():
 
     # Add Admin Data
-    pw1 = hashlib.sha256('1234'.encode('ascii')).hexdigest()
 
-    adm_1 = User(account='admin', password=pw1, level=1, name='Admin')
-    db.session.add_all([adm_1])
+    key_1 = StreamKey(key_id='ICEiIyQlJicoKSorLC0uLw==', key='FRYXGBkaGxwdHh8gISIjJA==', session_id='AAAAAAAAAAAA', stream_id=123)
+    db.session.add_all([key_1])
     db.session.commit()

@@ -3,3 +3,4 @@ Flask-SQLAlchemy==2.1
 PyMySQL==0.7.1
 Flask-Login==0.3.2
 Flask-WTF==0.12
+uWSGI==2.0.14

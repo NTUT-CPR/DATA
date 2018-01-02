@@ -7,6 +7,7 @@ from flask_wtf.csrf import CsrfProtect
 from migration import create_data
 from FlaskMVC.service import app, db, login_manager, get_blueprint
 from FlaskMVC.models.db.User import User, AccessLevel
+from FlaskMVC.models.db.Session import Session
 
 @login_manager.user_loader
 def user_loader(user_id):
