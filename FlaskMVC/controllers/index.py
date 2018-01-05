@@ -38,7 +38,7 @@ def create_key():
 
 @app.route('get_key', methods=['GET'])
 def get_key():
-    key = StreamKey.query.filter_by(key_id='f4ef71d2e83541a7a4529616dba9e831').first()
+    key = StreamKey.query.filter_by(key_id='FRYXGBkaGxwdHh8gISIjJA==').first()
 
     return json.dumps([{"key":key.key,"key_id":key.key_id,"pssh":[{"uuid":"1077efec-c0b2-4d02-ace3-3c1e52e2fb4b","data":"AAAAASAhIiMkJSYnKCkqKywtLi8AAAAA"}]}])
 
