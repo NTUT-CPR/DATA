@@ -2,7 +2,6 @@
 import sys
 
 from flask.ext.login import current_user
-from flask_wtf.csrf import CsrfProtect
 
 from migration import create_data
 from FlaskMVC.service import app, db, login_manager, get_blueprint
@@ -14,7 +13,6 @@ def user_loader(user_id):
     return User.query.get(user_id)
 
 login_manager.init_app(app)
-CsrfProtect(app)
 
 
 @app.context_processor
