@@ -128,8 +128,9 @@ def getCWBData():
     cwb_data = ""
     with urllib.request.urlopen(req) as response:
         cwb_data = response.read()
+    cwb_data = cwb_data.decode("utf-8")
     with open(json_file, "w", encoding="utf-8") as fp:
-        fp.write(cwb_data.decode("utf-8"))
+        fp.write(cwb_data)
 
     with open(timestamp_file, "w", encoding="utf-8") as fp:
         fp.write(str(time.time()))
