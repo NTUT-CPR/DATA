@@ -15,7 +15,10 @@ from FlaskMVC.service import get_blueprint
 from FlaskMVC.models.form.LoginForm import LoginForm
 from FlaskMVC.models.db.StreamKey import StreamKey
 from FlaskMVC.models.db.Session import Session
-from FlaskMVC.models.units.tools import getRandomKey, getCWBData, rootId2Str
+from FlaskMVC.models.units.tools import getRandomKey, getCWBData, rootId2Str, getAQIData, getUVData
+from FlaskMVC.models.form.CDNForm import CDNForm
+from FlaskMVC.models.units.tools import image_upload
+
 
 app = get_blueprint('index')
 
@@ -83,6 +86,22 @@ def get_cwbdata(root_id):
             return json.dumps(_d, ensure_ascii=False)
     return {}
 
+@app.route('get_aqidata/<int:root_id>', methods=['GET'])
+def get_aqidata(root_id):
+    site_name = rootId2Str(root_id)
+    for _d in getAQIData():
+        if (_d['SiteName'] == site_name):
+            return json.dumps(_d, ensure_ascii=False)
+    return {}
+
+@app.route('get_uvdata/<int:root_id>', methods=['GET'])
+def get_uvData(root_id):
+    site_name = rootId2Str(root_id)
+    for _d in getUVData():
+        if (_d['SiteName'] == site_name):
+            return json.dumps(_d, ensure_ascii=False)
+    return {}
+
 @csrf.exempt
 @app.route('set_iotdata/', methods=['POST'])
 def set_iotdata():
@@ -111,3 +130,16 @@ def get_iot(root_id):
     })
 
     return json.dumps(data, ensure_ascii=False)
+
+@csrf.exempt
+@app.route('upload_cdn/', methods=['POST'])
+def upload_cdn():
+    form = CDNForm(csrf_enabled=False)
+    if form.validate_on_submit():
+        if form.cdn_log_file.data.filename:
+            with open(image_upload(form.cdn_log_file.data), 'rb') as fp:
+                pass
+            
+            return 'success'
+
+    return 'error'
