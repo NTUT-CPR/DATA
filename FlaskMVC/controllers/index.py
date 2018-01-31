@@ -67,6 +67,15 @@ def get_key(id):
     return json.dumps([{"key":key.key, "key_id":key.key_id, "pssh":[{"uuid":"1077efec-c0b2-4d02-ace3-3c1e52e2fb4b", "data":data}]}])
 
 
+@app.route('dash/<id>/<video>', methods=['GET'])
+def dash(id, video):
+    """
+    給VOD MODULE串流KEY
+    id: KEY的ID
+    """
+    print(video)
+    return json.dumps({"sequences": [{"clips": [{"type": "source","path": "/opt/static/videos/"+video}]}]}) 
+
 
 @app.route('get_key2/<id>', methods=['GET'])
 def get_key2(id):
