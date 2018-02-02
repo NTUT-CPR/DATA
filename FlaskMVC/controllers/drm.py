@@ -27,15 +27,16 @@ def create_session():
     """
     新增Session
     """
-    if 'session' in request.cookies:
-        session = Session.query.filter_by(session_id=request.cookies['session']).first()
-        if session is not None and session.expiry > datetime.today():
-            return json.dumps({'message':'session_exist'})
-
     user_id = int(request.args.get('user_id', '-1'))
     token = request.args.get('token', '')
     if checkUserToken(user_id, token) is False:
         return json.dumps({'message':'token_error'})
+
+    if 'session' in request.cookies:
+        session = Session.query.filter_by(session_id=request.cookies['session']).first()
+        if session is not None and session.expiry > datetime.today():
+            return json.dumps({'message':'session_exist'})
+            
     expiry = datetime.today() +  timedelta(hours=6)
     session_id = uuid.uuid4().hex
     resp = make_response(json.dumps({'message':'success'}))
