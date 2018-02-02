@@ -66,10 +66,10 @@ def create_key(stream_id):
     #檢查是否已經產生過stream key
     stream_key = StreamKey.query.filter_by(session_id=session.session_id, stream_id=stream_id).first()
     if stream_key is not None:
-        return json.dumps([{
+        return json.dumps({
         "stream_key_id": stream_key.stream_key_id,
         "key":stream_key.key,
-        "key_id":stream_key.key_id}])
+        "key_id":stream_key.key_id})
 
     #產生stream key
     key_id = getRandomKey()
