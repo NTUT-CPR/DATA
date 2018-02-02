@@ -19,7 +19,7 @@ login_manager.init_app(app)
 def context_processor():
     return dict(current_user=current_user, AccessLevel=AccessLevel)
 
-app.register_blueprint(get_blueprint('index'), url_prefix='/')
+app.register_blueprint(get_blueprint('index'), url_prefix='/api')
 app.register_blueprint(get_blueprint('admin'), url_prefix='/admin')
 
 if __name__ == '__main__':
