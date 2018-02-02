@@ -18,6 +18,7 @@ from FlaskMVC.models.units.tools import getRandomKey, checkUserToken, getUserTok
 
 
 app = get_blueprint('index')
+dash = get_blueprint('dash')
 
 session_expiry = 60 * 60 * 6
 
@@ -100,8 +101,8 @@ def get_key(stream_id, stream_key_id):
     return json.dumps([{"key":key.key, "key_id":key.key_id, "pssh":[{"uuid":"1077efec-c0b2-4d02-ace3-3c1e52e2fb4b", "data":data}]}])
 
 
-@app.route('/dash/<int:stream_id>/<int:stream_key_id>', methods=['GET'])
-def dash(stream_id, stream_key_id):
+@dash.route('/<int:stream_id>/<int:stream_key_id>/<mpd>', methods=['GET'])
+def get_path(stream_id, stream_key_id, mpd):
     """
     給VOD MODULE串流KEY
     id: KEY的ID

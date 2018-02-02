@@ -21,6 +21,7 @@ def context_processor():
 
 app.register_blueprint(get_blueprint('index'), url_prefix='/api')
 app.register_blueprint(get_blueprint('admin'), url_prefix='/admin')
+app.register_blueprint(get_blueprint('dash'), url_prefix='/dash')
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

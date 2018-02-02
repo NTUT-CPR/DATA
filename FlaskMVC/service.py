@@ -25,7 +25,8 @@ csrf = CsrfProtect(app)
 cors = CORS(app)
 
 blueprint = {'index': Blueprint('index', __name__),
-             'admin': Blueprint('admin', __name__)}
+             'admin': Blueprint('admin', __name__),
+             'dash': Blueprint('dash', __name__)}
 
 
 def get_blueprint(key):
