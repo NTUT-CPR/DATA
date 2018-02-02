@@ -77,10 +77,10 @@ def create_key(stream_id):
     stream_key = StreamKey(key_id=key_id, key=key, session_id=session.session_id, stream_id=stream_id)
     db.session.add(stream_key)
     db.session.commit()
-    return json.dumps([{
+    return json.dumps({
         "stream_key_id": stream_key.stream_key_id,
         "key":stream_key.key,
-        "key_id":stream_key.key_id}])
+        "key_id":stream_key.key_id})
 
 
 @app.route('/get_key/<int:stream_key_id>/<int:stream_id>', methods=['GET'])
