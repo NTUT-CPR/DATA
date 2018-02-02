@@ -83,8 +83,8 @@ def create_key(stream_id):
         "key_id":stream_key.key_id})
 
 
-@app.route('/get_key/<int:stream_key_id>/<int:stream_id>', methods=['GET'])
-def get_key(stream_key_id, stream_id):
+@app.route('/get_key/<int:stream_id>/<int:stream_key_id>', methods=['GET'])
+def get_key(stream_id, stream_key_id):
     """
     給VOD MODULE串流KEY
     id: KEY的ID
@@ -100,8 +100,8 @@ def get_key(stream_key_id, stream_id):
     return json.dumps([{"key":key.key, "key_id":key.key_id, "pssh":[{"uuid":"1077efec-c0b2-4d02-ace3-3c1e52e2fb4b", "data":data}]}])
 
 
-@app.route('/dash/<int:stream_key_id>/<int:stream_id>', methods=['GET'])
-def dash(stream_key_id, stream_id):
+@app.route('/dash/<int:stream_id>/<int:stream_key_id>', methods=['GET'])
+def dash(stream_id, stream_key_id):
     """
     給VOD MODULE串流KEY
     id: KEY的ID
