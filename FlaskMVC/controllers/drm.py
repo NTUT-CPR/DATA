@@ -111,11 +111,11 @@ def get_path(stream_id, stream_key_id):
     if key is None or key.session.expiry <= datetime.today():
         return json.dumps({'message':'key error.'}), 403
 
-    if stream_id  == 0:
-        return json.dumps({"sequences": [{"clips": [{"type": "source","path": "/opt/static/videos/str.mp4"}]}]}) 
     if stream_id  == 1:
-        return json.dumps({"sequences": [{"clips": [{"type": "source","path": "/opt/static/videos/video3.mp4"}]}]}) 
+        return json.dumps({"sequences": [{"clips": [{"type": "source","path": "/opt/static/videos/str.mp4"}]}]}) 
     if stream_id  == 2:
+        return json.dumps({"sequences": [{"clips": [{"type": "source","path": "/opt/static/videos/video3.mp4"}]}]}) 
+    if stream_id  == 3:
         return json.dumps({"sequences": [{"clips": [{"type": "source","path": "/opt/static/videos/sakura.mp4"}]}]}) 
 
     return json.dumps({'message':'stream not exist.'}), 404
