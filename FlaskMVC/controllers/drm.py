@@ -101,8 +101,8 @@ def get_key(stream_id, stream_key_id):
     return json.dumps([{"key":key.key, "key_id":key.key_id, "pssh":[{"uuid":"1077efec-c0b2-4d02-ace3-3c1e52e2fb4b", "data":data}]}])
 
 
-@dash.route('/<int:stream_id>/<int:stream_key_id>/<mpd>', methods=['GET'])
-def get_path(stream_id, stream_key_id, mpd):
+@dash.route('/<int:stream_id>/<int:stream_key_id>', methods=['GET'])
+def get_path(stream_id, stream_key_id):
     """
     給VOD MODULE串流KEY
     id: KEY的ID
