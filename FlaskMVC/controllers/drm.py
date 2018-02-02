@@ -21,7 +21,7 @@ app = get_blueprint('index')
 
 session_expiry = 60 * 60 * 6
 
-@app.route('create_session', methods=['GET'])
+@app.route('/create_session', methods=['GET'])
 def create_session():
     """
     新增Session
@@ -46,7 +46,7 @@ def create_session():
     db.session.commit()
     return resp
 
-@app.route('create_key/<int:stream_id>', methods=['GET'])
+@app.route('/create_key/<int:stream_id>', methods=['GET'])
 def create_key(stream_id): 
     """
     建立串流KEY
@@ -83,7 +83,7 @@ def create_key(stream_id):
         "key_id":stream_key.key_id}])
 
 
-@app.route('get_key/<int:stream_key_id>/<int:stream_id>', methods=['GET'])
+@app.route('/get_key/<int:stream_key_id>/<int:stream_id>', methods=['GET'])
 def get_key(stream_key_id, stream_id):
     """
     給VOD MODULE串流KEY
@@ -100,7 +100,7 @@ def get_key(stream_key_id, stream_id):
     return json.dumps([{"key":key.key, "key_id":key.key_id, "pssh":[{"uuid":"1077efec-c0b2-4d02-ace3-3c1e52e2fb4b", "data":data}]}])
 
 
-@app.route('dash/<int:stream_key_id>/<int:stream_id>', methods=['GET'])
+@app.route('/dash/<int:stream_key_id>/<int:stream_id>', methods=['GET'])
 def dash(stream_key_id, stream_id):
     """
     給VOD MODULE串流KEY

@@ -21,7 +21,7 @@ from FlaskMVC.models.units.tools import image_upload
 app = get_blueprint('index')
 
 session_expiry = 60 * 60 * 6
-@app.route('get_opendata/<int:root_id>', methods=['GET'])
+@app.route('/get_opendata/<int:root_id>', methods=['GET'])
 def get_opendata(root_id):
     site_name = rootId2Str(root_id)
     ret = {}
@@ -37,7 +37,7 @@ def get_opendata(root_id):
     return json.dumps(ret, ensure_ascii=False)
 
 @csrf.exempt
-@app.route('set_iotdata/', methods=['POST'])
+@app.route('/set_iotdata/', methods=['POST'])
 def set_iotdata():
     data = {
         "root_id": float(request.json['rootId']),
@@ -50,7 +50,7 @@ def set_iotdata():
     return "seccess"
 
 
-@app.route('get_iot/<int:root_id>', methods=['GET'])
+@app.route('/get_iot/<int:root_id>', methods=['GET'])
 def get_iot(root_id):
     print(root_id)
     result = mongo.db.iot.find({"root_id": root_id}).sort([("_id", -1)]).limit(1)
@@ -66,7 +66,7 @@ def get_iot(root_id):
     return json.dumps(data, ensure_ascii=False)
 
 @csrf.exempt
-@app.route('upload_cdn/', methods=['POST'])
+@app.route('/upload_cdn/', methods=['POST'])
 def upload_cdn():
     form = CDNForm(csrf_enabled=False)
     if form.validate_on_submit():
