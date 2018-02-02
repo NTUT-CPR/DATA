@@ -4,9 +4,9 @@ server {
         server_name _;
         location / {
                 include uwsgi_params;
-                uwsgi_param SCRIPT_NAME /flask_mvc;
+                uwsgi_param SCRIPT_NAME /CloudProject;
                 uwsgi_modifier1 30;
-                uwsgi_pass unix:/var/www/flask_mvc/run.sock;
+                uwsgi_pass unix:/var/www/CloudProject/run.sock;
                 keepalive_timeout 120;
                 uwsgi_read_timeout 120;
                 client_max_body_size 200m;
