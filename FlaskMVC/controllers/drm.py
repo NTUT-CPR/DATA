@@ -34,9 +34,9 @@ def create_session():
 
     if 'session' in request.cookies:
         session = Session.query.filter_by(session_id=request.cookies['session']).first()
-        if session is not None and session.expiry > datetime.today():
+        if session is not None and session.expiry > datetime.today() and session.user_id == user_id:
             return json.dumps({'message':'session_exist'})
-            
+
     expiry = datetime.today() +  timedelta(hours=6)
     session_id = uuid.uuid4().hex
     resp = make_response(json.dumps({'message':'success'}))
