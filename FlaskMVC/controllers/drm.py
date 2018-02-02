@@ -34,8 +34,8 @@ def create_session():
 
     user_id = int(request.args.get('user_id', '-1'))
     token = request.args.get('token', '')
-    #if checkUserToken(123, token) is False:
-    #    return json.dumps({'message':'token_error'})
+    if checkUserToken(user_id, token) is False:
+        return json.dumps({'message':'token_error'})
     expiry = datetime.today() +  timedelta(hours=6)
     session_id = uuid.uuid4().hex
     resp = make_response(json.dumps({'message':'success'}))
