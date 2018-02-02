@@ -33,8 +33,8 @@ def create_session():
         return json.dumps({'message':'token_error'})
 
     if 'session' in request.cookies:
-        session = Session.query.filter_by(session_id=request.cookies['session']).first()
-        if session is not None and session.expiry > datetime.today() and session.user_id == user_id:
+        session = Session.query.filter_by(user_id=user_id, session_id=request.cookies['session']).first()
+        if session is not None and session.expiry > datetime.today():
             return json.dumps({'message':'session_exist'})
 
     expiry = datetime.today() +  timedelta(hours=6)
