@@ -67,7 +67,7 @@ def create_key(stream_id):
     stream_key = StreamKey.query.filter_by(session_id=session.session_id, stream_id=stream_id).first()
     if stream_key is not None:
         return json.dumps([{
-        "id": stream_key.id,
+        "stream_key_id": stream_key.stream_key_id,
         "key":stream_key.key,
         "key_id":stream_key.key_id}])
 
