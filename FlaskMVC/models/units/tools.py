@@ -50,7 +50,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in allow_extensions
 
 
-def image_upload(file):
+def upload_file(file):
     """
     上傳檔案
     :param file: 表單回傳的檔案物件
@@ -58,9 +58,9 @@ def image_upload(file):
     """
     if file:
         filename = get_random_string() + secure_filename(file.filename)
-        print(filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return filename
+        newName = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(newName)
+        return newName
     return None
 
 
