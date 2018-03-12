@@ -118,5 +118,7 @@ def get_path(stream_id, stream_key_id):
         return json.dumps({"sequences": [{"clips": [{"type": "source","path": "/opt/static/videos/video3.mp4"}]}]}) 
     if stream_id  == 3:
         return json.dumps({"sequences": [{"clips": [{"type": "source","path": "/opt/static/videos/sakura.mp4"}]}]}) 
+    if stream_id == 4:
+        return json.dumps({"sequences": [{"clips": [{"type": "source","path": "/opt/static/videos/qp22_elephants_dream_1080p24.mp4"}]}]}) 
 
     return json.dumps({'message':'stream not exist.'}), 404
